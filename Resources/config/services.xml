@@ -11,7 +11,12 @@
 
         <parameter key="jez433_clank.web_socket_server.periodic" type="collection">
             <!-- Sample Periodic Service, being executed every 5000ms (5s). Uncomment to enable -->
-            <!-- <parameter key="jez433_clank.sample_service">5000</parameter> -->
+            <!-- <parameter key="jez433_clank.periodic_sample_service">5000</parameter> -->
+        </parameter>
+
+        <parameter key="jez433_clank.rpc_services" type="collection">
+            <!-- Sample RPC Service. Key is the service ID, Argument is the "Network NameSpace". Uncomment to enable -->
+            <parameter key="jez433_clank.rpc_sample_service">sample</parameter>
         </parameter>
 
 
@@ -48,8 +53,9 @@
         <service id="jez433_clank.clank_handler_rpc" class="Jez433\ClankBundle\Server\App\Handler\RPCHandler"></service>
         <service id="jez433_clank.clank_handler_topic" class="Jez433\ClankBundle\Server\App\Handler\TopicHandler"></service>
 
-
-        <service id="jez433_clank.sample_service" class="Jez433\ClankBundle\Service\SampleService"></service>
+        <!-- Sample Services for examples -->
+        <service id="jez433_clank.rpc_sample_service" class="Jez433\ClankBundle\RPC\SampleService"></service>
+        <service id="jez433_clank.periodic_sample_service" class="Jez433\ClankBundle\Service\SampleService"></service>
     </services>
 
 
