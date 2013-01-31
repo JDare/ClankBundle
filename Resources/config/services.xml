@@ -4,11 +4,55 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="jez433_clank.example.class">Jez433\ClankBundle\Example</parameter>
+        <parameter key="jez433_clank.web_socket_server.class">Jez433\ClankBundle\Server\Type\WebSocketServerType</parameter>
+        <parameter key="jez433_clank.web_socket_server.port">8080</parameter>
+        <parameter key="jez433_clank.web_socket_server.host"></parameter>
+
+        <parameter key="jez433_clank.web_socket_server.periodic" type="collection">
+            <parameter key="jez433_clank.sample_service">5000</parameter>
+        </parameter>
+
+
+        <parameter key="jez433_clank.servers" type="collection">
+            <parameter>jez433_clank.web_socket_server</parameter>
+        </parameter>
     </parameters>
 
+    <services>
+        <service id="jez433_clank.entry_point" class="Jez433\ClankBundle\Server\EntryPoint">
+            <argument type="service" id="service_container" />
+            <argument>%jez433_clank.servers%</argument>
+        </service>
+
+        <service id="jez433_clank.web_socket_server" class="%jez433_clank.web_socket_server.class%">
+            <argument>%jez433_clank.web_socket_server.host%</argument>
+            <argument>%jez433_clank.web_socket_server.port%</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <call method="setPeriodicServices">
+                <argument>%jez433_clank.web_socket_server.periodic%</argument>
+            </call>
+           <!-- <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+             -->
+        </service>
+
+        <service id="jez433_clank.clank_app" class="Jez433\ClankBundle\Server\App\ClankApp">
+
+        </service>
+
+
+        <service id="jez433_clank.sample_service" class="Jez433\ClankBundle\Service\SampleService">
+
+        </service>
+    </services>
+
+
+
+
+    <!--
     <services>
         <service id="jez433_clank.example" class="%jez433_clank.example.class%">
             <argument type="service" id="service_id" />
