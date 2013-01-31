@@ -2,19 +2,25 @@
 
 namespace Jez433\ClankBundle\Server\App;
 
-use Ratchet\MessageComponentInterface;
-use Ratchet\ConnectionInterface;
+use Ratchet\ConnectionInterface as Conn;
+use Ratchet\Wamp\WampServerInterface;
 
-class ClankApp implements MessageComponentInterface {
-    public function onOpen(ConnectionInterface $conn) {
+class ClankApp implements WampServerInterface {
+
+    public function onPublish(Conn $conn, $topic, $event, array $exclude, array $eligible) {
+        $topic->broadcast($event);
     }
 
-    public function onMessage(ConnectionInterface $from, $msg) {
+    public function onCall(Conn $conn, $id, $topic, array $params) {
+        $conn->callError($id, $topic, 'RPC not supported on this demo');
     }
 
-    public function onClose(ConnectionInterface $conn) {
-    }
+    // No need to anything, since WampServer adds and removes subscribers to Topics automatically
+    public function onSubscribe(Conn $conn, $topic) {}
+    public function onUnSubscribe(Conn $conn, $topic) {}
 
-    public function onError(ConnectionInterface $conn, \Exception $e) {
-    }
+    public function onOpen(Conn $conn) {}
+    public function onClose(Conn $conn) {}
+    public function onError(Conn $conn, \Exception $e) {}
+
 }

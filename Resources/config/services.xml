@@ -10,7 +10,8 @@
         <parameter key="jez433_clank.web_socket_server.host"></parameter>
 
         <parameter key="jez433_clank.web_socket_server.periodic" type="collection">
-            <parameter key="jez433_clank.sample_service">5000</parameter>
+            <!-- Sample Periodic Service, being executed every 5000ms (5s). Uncomment to enable -->
+            <!-- <parameter key="jez433_clank.sample_service">5000</parameter> -->
         </parameter>
 
 
@@ -44,9 +45,7 @@
         </service>
 
 
-        <service id="jez433_clank.sample_service" class="Jez433\ClankBundle\Service\SampleService">
-
-        </service>
+        <service id="jez433_clank.sample_service" class="Jez433\ClankBundle\Service\SampleService"></service>
     </services>
 
 

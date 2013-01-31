@@ -35,6 +35,8 @@ class WebSocketServerType implements ServerTypeInterface
     {
         $this->setupApp();
 
+        /** @var $loop \React\EventLoop\LoopInterface */
+
         $this->loop = \React\EventLoop\Factory::create();
 
         $this->socket = new \React\Socket\Server($this->loop);
@@ -71,7 +73,9 @@ class WebSocketServerType implements ServerTypeInterface
     private function setupApp()
     {
         $this->app = new WsServer(
-            $this->getContainer()->get("jez433_clank.clank_app")
+            new WampServer(
+                $this->getContainer()->get("jez433_clank.clank_app")
+            )
         );
     }
 
