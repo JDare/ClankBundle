@@ -2,10 +2,10 @@
 
 namespace Jez433\ClankBundle\RPC;
 
-class SampleService extends ClankRPC
+class SampleService
 {
-    public function helloWorld(array $params)
+    public function add(array $params)
     {
-
+        return array("result" => array_sum($params));
     }
 }
