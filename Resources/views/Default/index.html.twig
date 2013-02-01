@@ -17,7 +17,11 @@ Hello!
                     console.log("Received message", uri, payload);
                 });
 
+<<<<<<< HEAD
                 session.publish("sample/channel", {data: "Sup Fools"});
+=======
+                session.publish("sample/channel", {data: "Sup String"});
+>>>>>>> dev
 
 
 
@@ -25,7 +29,11 @@ Hello!
                 /**
                  * RPC Example
                  */
+<<<<<<< HEAD
                 session.call("sample/add", [2, 5])
+=======
+                session.call("sample/add_func", [2, 5])
+>>>>>>> dev
                     .then(
 
                         function(result)
