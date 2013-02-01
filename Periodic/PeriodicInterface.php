@@ -1,6 +1,6 @@
 <?php
 
-namespace jdare\ClankBundle\Service;
+namespace jdare\ClankBundle\Periodic;
 
 interface PeriodicInterface
 {

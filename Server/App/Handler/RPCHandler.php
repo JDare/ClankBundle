@@ -34,7 +34,7 @@ class RPCHandler implements RPCHandlerInterface
         if ($handler)
         {
             try{
-                $result = call_user_func(array($handler, $parts[1]), $params);
+                $result = call_user_func(array($handler, $parts[1]), $conn, $params);
             }catch(\Exception $e)
             {
                 $conn->callError($id, $topic, $e->getMessage(),  array("code"=> $e->getCode(), "rpc" => $topic->getId(), "params" => $params));
