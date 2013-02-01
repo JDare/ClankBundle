@@ -67,6 +67,10 @@
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>
+
+        <service id="jez433.clank.twig.clank_extension" class="Jez433\ClankBundle\Twig\ClankExtension">
+            <tag name="twig.extension" />
+            <argument type="service" id="service_container" />
         </service>
     </services>
     -->

@@ -1,1 +1,12 @@
-Hello {{ name }}!
+Hello!
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript">
+    (function($){
+        $(function(){
+            var clank = Clank.connect("ws://clank.local:8080");
+        })
+    })(jQuery);
+
+</script>
+{{ clank_client() }}
