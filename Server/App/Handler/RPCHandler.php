@@ -33,7 +33,14 @@ class RPCHandler implements RPCHandlerInterface
         $result = null;
         if ($handler)
         {
-            $result = call_user_func(array($handler, $parts[1]), $params);
+            try{
+                $result = call_user_func(array($handler, $parts[1]), $params);
+            }catch(\Exception $e)
+            {
+                $conn->callError($id, $topic, $e->getMessage(),  array("code"=> $e->getCode(), "rpc" => $topic->getId(), "params" => $params));
+                return;
+            }
+
             if ($result === null) //incase handler doesnt return anything!
                 $result = false;
         }
