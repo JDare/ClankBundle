@@ -1,74 +1,62 @@
 var Clank = (function()
 {
-    var uri = "";
-    var session = false;
 
-    call = function call(call, payload)
-    {
-        if (!this.session)
-            throw new Error("Client must be connected to RPC");
+    var ClankSocket = function(uri){
+        /**
+         * Holds the uri to connect to
+         * @type {String}
+         * @private
+         */
+        this._uri = uri;
 
-        this.session.call(call, payload);
+        /**
+         * Hold autobahn session reference
+         * @type {Mixed}
+         * @private
+         */
+        this._session = false;
 
-        return this;
-    },
+        /**
+         * Hold event callbacks
+         * @type {Object}
+         * @private
+         */
+        this._listeners = {};
 
+        //calls the Clank Socket connect function.
+        this.connect();
+    }
 
-    subscribe = function(topic, callback)
-    {
-        if (!this.session)
-            throw new Error("Client must be connected to subscribe to a topic.");
+    ClankSocket.prototype.connect = function () {
+        var that = this;
 
-        this.session.subscribe(topic, callback);
+        ab.connect(this._uri,
 
-        return this;
-    },
+            //Function on connect
+            function(session){
+                this._session = session;
 
-    unsubscribe = function(topic)
-    {
-        if (!this.session)
-            throw new Error("Client must be connected to unsubscribe to a topic.");
+                that.fire("socket/connect");
+            },
 
-        this.session.unsubscribe(topic);
+            //Function on disconnect / error
+            function(code, reason){
+                this._session = false;
 
-        return this;
-    },
+                that.fire({type: "socket/disconnect", data: {code: code, reason: reason}});
+            }
+        );
+    };
 
-    publish = function(topic, payload)
-    {
-        if (!this.session)
-            throw new Error("Client must be connected to publish to a topic.");
-
-        this.session.publish(topic, payload);
-
-        return this;
-    },
-
-    on = function(type, listener){
+    ClankSocket.prototype.on = function(type, listener){
         if (typeof this._listeners[type] == "undefined"){
             this._listeners[type] = [];
         }
 
         this._listeners[type].push(listener);
+    };
 
-        return this;
-    },
-
-    off = function(type, listener){
-        if (this._listeners[type] instanceof Array){
-            var listeners = this._listeners[type];
-            for (var i=0, len=listeners.length; i < len; i++){
-                if (listeners[i] === listener){
-                    listeners.splice(i, 1);
-                    break;
-                }
-            }
-        }
-
-        return this;
-    },
-
-    fire = function(event){
+    ClankSocket.prototype.fire = function(event){
         if (typeof event == "string"){
             event = { type: event };
         }
@@ -86,58 +74,29 @@ var Clank = (function()
                 listeners[i].call(this, event.data);
             }
         }
-
-        return this;
     };
+
+    ClankSocket.prototype.off = function(type, listener){
+        if (this._listeners[type] instanceof Array){
+            var listeners = this._listeners[type];
+            for (var i=0, len=listeners.length; i < len; i++){
+                if (listeners[i] === listener){
+                    listeners.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    };
+
+
 
     return {
         connect: function(uri)
         {
-            //check to allow uri specified with or without protocol
-            uri = "ws://" + uri.replace("ws://", "");
-
-            if (typeof ab === "undefined")
-            {
-                throw new Error("AutobahnJS must be included. Try adding http://autobahn.s3.amazonaws.com/js/autobahn.min.js");
-                return;
-            }
-
-            var that = this;
-            ab.connect(uri,
-                //function for connection established.
-                function (sess)
-                {
-                    session = sess;
-                    that.fire("connected");
-
-                },
-
-                //function for error has occured / disconnected
-                function (code, reason)
-                {
-                    that.session = false;
-                    that.fire({type:"disconnected", data: {"code": code, "reason": reason}});
-                }
-            )
-
-            return new Clank();
+            return new ClankSocket(uri);
         }
     }
+
 })();
 
-/*
-Clank.prototype.
 
-Clank.prototype.
-
-Clank.prototype.
-
-Clank.prototype.
-
-Clank.prototype.
-
-Clank.prototype.
-
-Clank.prototype.
-
-Clank.prototype.*/

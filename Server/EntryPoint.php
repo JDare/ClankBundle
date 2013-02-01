@@ -2,10 +2,25 @@
 
 namespace Jez433\ClankBundle\Server;
 
+use Symfony\Component\Console\Output\OutputInterface;
+use Jez433\ClankBundle\Server\Type\ServerTypeInterface;
 
 class EntryPoint
 {
-    protected $container, $servers;
+    protected $container, $servers, $output;
+
+    public function setOutput(OutputInterface $output)
+    {
+        $this->output = $output;
+    }
+
+    /**
+     * @return OutputInterface
+     */
+    public function getOutput()
+    {
+        return $this->output;
+    }
     /**
      *
      */
@@ -22,8 +37,23 @@ class EntryPoint
     {
         foreach($this->getServers() as $server)
         {
+            $server = $this->getContainer()->get($server);
+            if (!$server)
+            {
+                throw new \Exception("Unable to find Server Service.");
+            }
+
+            if (!($server instanceof ServerTypeInterface))
+            {
+                throw new \Exception("Server Service must implement ServerTypeInterface");
+            }
+
+            if ($this->getOutput())
+            {
+                $this->getOutput()->writeln("Launching " . $server->getName() . " on: " . $server->getAddress());
+            }
             //launch server into background process?
-            $this->getContainer()->get($server)->launch();
+            $server->launch();
         }
     }
 
@@ -46,4 +76,6 @@ class EntryPoint
     {
         return $this->servers;
     }
+
+
 }

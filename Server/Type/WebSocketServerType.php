@@ -97,5 +97,15 @@ class WebSocketServerType implements ServerTypeInterface
         $this->periodicServices = $services;
     }
 
+    public function getAddress()
+    {
+        return ($this->host)?$this->host:"*" . ":" . $this->port;
+    }
+
+    public function getName()
+    {
+        return "Ratchet WS Server";
+    }
+
 
 }
