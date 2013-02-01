@@ -21,11 +21,6 @@
                 <parameter key="service">jdare_clank.rpc_sample_service</parameter>
             </parameter>
 
-<<<<<<< HEAD
-            <parameter type="collection">
-                <parameter key="name">add</parameter>
-                <parameter key="service">jdare_clank.rpc_sample_service</parameter>
-=======
         </parameter>
 
         <parameter key="jdare_clank.topic_services" type="collection">
@@ -33,7 +28,6 @@
             <parameter type="collection">
                 <parameter key="name">sample/channel</parameter>
                 <parameter key="service">jdare_clank.topic_sample_service</parameter>
->>>>>>> dev
             </parameter>
 
         </parameter>
@@ -52,10 +46,6 @@
 	        <argument type="service" id="service_container" />
 		</service>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         <service id="jdare_clank.entry_point" class="jdare\ClankBundle\Server\EntryPoint">
             <argument type="service" id="service_container" />
             <argument>%jdare_clank.servers%</argument>
@@ -85,13 +75,7 @@
                 <argument>%jdare_clank.rpc_services%</argument>
             </call>
         </service>
-<<<<<<< HEAD
-        <service id="jdare_clank.clank_handler_topic" class="jdare\ClankBundle\Server\App\Handler\TopicHandler"></service>
 
-        <!-- Sample Services examples -->
-        <service id="jdare_clank.rpc_sample_service" class="jdare\ClankBundle\RPC\SampleService"></service>
-        <service id="jdare_clank.periodic_sample_service" class="jdare\ClankBundle\Service\SampleService"></service>
-=======
         <service id="jdare_clank.clank_handler_topic" class="jdare\ClankBundle\Server\App\Handler\TopicHandler">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
@@ -106,7 +90,6 @@
         <service id="jdare_clank.rpc_sample_service" class="jdare\ClankBundle\RPC\AcmeService"></service>
         <service id="jdare_clank.periodic_sample_service" class="jdare\ClankBundle\Periodic\AcmePeriodic"></service>
 
->>>>>>> dev
 
     </services>
 
@@ -119,14 +102,6 @@
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>
-<<<<<<< HEAD
 
-        <service id="jez433.clank.twig.clank_extension" class="Jez433\ClankBundle\Twig\ClankExtension">
-            <tag name="twig.extension" />
-            <argument type="service" id="service_container" />
-        </service>
-=======
->>>>>>> dev
-    </services>
 	-->
 </container>

@@ -30,20 +30,15 @@ class RPCHandler implements RPCHandlerInterface
 
         $handler = $this->getHandler($parts[0]);
 
-<<<<<<< HEAD
-=======
         $method = $this->toCamelCase($parts[1]);
 
->>>>>>> dev
         $result = null;
         if ($handler)
         {
             try{
-<<<<<<< HEAD
-                $result = call_user_func(array($handler, $parts[1]), $params);
-=======
+
                 $result = call_user_func(array($handler, $method), $conn, $params);
->>>>>>> dev
+
             }catch(\Exception $e)
             {
                 $conn->callError($id, $topic, $e->getMessage(),  array("code"=> $e->getCode(), "rpc" => $topic->getId(), "params" => $params));
@@ -82,15 +77,7 @@ class RPCHandler implements RPCHandlerInterface
                 return $this->getContainer()->get($service['service']);
         }
         return false;
-<<<<<<< HEAD
-    }
 
-    public function setRPCServices($rpcServices)
-    {
-        $this->rpcServices = $rpcServices;
-    }
-
-=======
     }
 
     public function setRPCServices($rpcServices)
@@ -113,7 +100,5 @@ class RPCHandler implements RPCHandlerInterface
         $func = create_function('$c', 'return strtoupper($c[1]);');
         return preg_replace_callback('/_([a-z])/', $func, $str);
     }
-
->>>>>>> dev
 
 }
