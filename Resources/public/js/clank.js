@@ -34,9 +34,7 @@ var Clank = (function()
 
             //Function on connect
             function(session){
-                this._session = session;
-
-                that.fire("socket/connect");
+                that.fire({type: "socket/connect", data: session });
             },
 
             //Function on disconnect / error
@@ -48,6 +46,63 @@ var Clank = (function()
         );
     };
 
+
+    /**
+     *
+     * Remote Procedure Call
+     *
+     * @param {String} command
+     * @param {Object} payload
+     */
+    ClankSocket.prototype.call = function(command, payload)
+    {
+        this._session.call(command, payload);
+    }
+
+    /**
+     *
+     * Subscribe to a topic/channel using pubsub
+     *
+     * @param {string} channel channel to subscribe to
+     * @param {function} publication_callback a function to be called when something is published in this channel.
+     */
+    ClankSocket.prototype.subscribe = function(channel, publication_callback){
+        this._session.subscribe(channel, publication_callback);
+    }
+
+    /**
+     *
+     * Subscribe to a topic/channel using pubsub
+     *
+     * @param {string} channel channel to subscribe to
+     */
+    ClankSocket.prototype.unsubscribe = function(channel){
+        this._session.unsubscribe(channel);
+    }
+
+    /**
+     *
+     * Publish to a topic/channel using pubsub
+     *
+     * @param {string} channel channel to publish to
+     * @param {object} payload data payload for this channel
+     */
+    ClankSocket.prototype.publish = function(channel, payload)
+    {
+        this._session.call(channel, payload);
+    }
+
+    /***************************************
+     * Event Handling, Listeners etc.
+     */
+
+
+    /**
+     * Adds a listener for an event type
+     *
+     * @param {String} type
+     * @param {function} listener
+     */
     ClankSocket.prototype.on = function(type, listener){
         if (typeof this._listeners[type] == "undefined"){
             this._listeners[type] = [];
@@ -56,6 +111,10 @@ var Clank = (function()
         this._listeners[type].push(listener);
     };
 
+    /**
+     * Fires an event for all listeners.
+     * @param {String} event
+     */
     ClankSocket.prototype.fire = function(event){
         if (typeof event == "string"){
             event = { type: event };
@@ -76,6 +135,12 @@ var Clank = (function()
         }
     };
 
+    /**
+     * Removes a listener from an event
+     *
+     * @param {String} type
+     * @param {function} listener
+     */
     ClankSocket.prototype.off = function(type, listener){
         if (this._listeners[type] instanceof Array){
             var listeners = this._listeners[type];
