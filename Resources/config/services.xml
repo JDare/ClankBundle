@@ -5,77 +5,77 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="jez433_clank.web_socket_server.class">Jez433\ClankBundle\Server\Type\WebSocketServerType</parameter>
-        <parameter key="jez433_clank.web_socket_server.port">8080</parameter>
-        <parameter key="jez433_clank.web_socket_server.host"></parameter>
+        <parameter key="jdare_clank.web_socket_server.class">jdare\ClankBundle\Server\Type\WebSocketServerType</parameter>
+        <parameter key="jdare_clank.web_socket_server.port">8080</parameter>
+        <parameter key="jdare_clank.web_socket_server.host"></parameter>
 
-        <parameter key="jez433_clank.web_socket_server.periodic" type="collection">
+        <parameter key="jdare_clank.web_socket_server.periodic" type="collection">
             <!-- Sample Periodic Service, being executed every 5000ms (5s). Uncomment to enable -->
-            <!-- <parameter key="jez433_clank.periodic_sample_service">5000</parameter> -->
+            <!-- <parameter key="jdare_clank.periodic_sample_service">5000</parameter> -->
         </parameter>
 
-        <parameter key="jez433_clank.rpc_services" type="collection">
+        <parameter key="jdare_clank.rpc_services" type="collection">
             <!-- Sample RPC Service. Key is the service ID, Argument is the "Network NameSpace". Uncomment to enable -->
             <parameter type="collection">
                 <parameter key="name">sample</parameter>
-                <parameter key="service">jez433_clank.rpc_sample_service</parameter>
+                <parameter key="service">jdare_clank.rpc_sample_service</parameter>
             </parameter>
 
             <parameter type="collection">
                 <parameter key="name">add</parameter>
-                <parameter key="service">jez433_clank.rpc_sample_service</parameter>
+                <parameter key="service">jdare_clank.rpc_sample_service</parameter>
             </parameter>
 
         </parameter>
 
 
-        <parameter key="jez433_clank.servers" type="collection">
-            <parameter>jez433_clank.web_socket_server</parameter>
+        <parameter key="jdare_clank.servers" type="collection">
+            <parameter>jdare_clank.web_socket_server</parameter>
         </parameter>
     </parameters>
 
 
     <services>
 	
-		<service id="jez433.clank.twig.clank_extension" class="Jez433\ClankBundle\Twig\ClankExtension">
+		<service id="jdare_clank.twig.clank_extension" class="jdare\ClankBundle\Twig\ClankExtension">
 	        <tag name="twig.extension" />
 	        <argument type="service" id="service_container" />
 		</service>
 
-        <service id="jez433_clank.entry_point" class="Jez433\ClankBundle\Server\EntryPoint">
+        <service id="jdare_clank.entry_point" class="jdare\ClankBundle\Server\EntryPoint">
             <argument type="service" id="service_container" />
-            <argument>%jez433_clank.servers%</argument>
+            <argument>%jdare_clank.servers%</argument>
         </service>
 
-        <service id="jez433_clank.web_socket_server" class="%jez433_clank.web_socket_server.class%">
-            <argument>%jez433_clank.web_socket_server.host%</argument>
-            <argument>%jez433_clank.web_socket_server.port%</argument>
+        <service id="jdare_clank.web_socket_server" class="%jdare_clank.web_socket_server.class%">
+            <argument>%jdare_clank.web_socket_server.host%</argument>
+            <argument>%jdare_clank.web_socket_server.port%</argument>
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
             <call method="setPeriodicServices">
-                <argument>%jez433_clank.web_socket_server.periodic%</argument>
+                <argument>%jdare_clank.web_socket_server.periodic%</argument>
             </call>
         </service>
 
-        <service id="jez433_clank.clank_app" class="Jez433\ClankBundle\Server\App\ClankApp">
-            <argument type="service" id="jez433_clank.clank_handler_rpc" />
-            <argument type="service" id="jez433_clank.clank_handler_topic" />
+        <service id="jdare_clank.clank_app" class="jdare\ClankBundle\Server\App\ClankApp">
+            <argument type="service" id="jdare_clank.clank_handler_rpc" />
+            <argument type="service" id="jdare_clank.clank_handler_topic" />
         </service>
 
-        <service id="jez433_clank.clank_handler_rpc" class="Jez433\ClankBundle\Server\App\Handler\RPCHandler">
+        <service id="jdare_clank.clank_handler_rpc" class="jdare\ClankBundle\Server\App\Handler\RPCHandler">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
             <call method="setRPCServices">
-                <argument>%jez433_clank.rpc_services%</argument>
+                <argument>%jdare_clank.rpc_services%</argument>
             </call>
         </service>
-        <service id="jez433_clank.clank_handler_topic" class="Jez433\ClankBundle\Server\App\Handler\TopicHandler"></service>
+        <service id="jdare_clank.clank_handler_topic" class="jdare\ClankBundle\Server\App\Handler\TopicHandler"></service>
 
         <!-- Sample Services examples -->
-        <service id="jez433_clank.rpc_sample_service" class="Jez433\ClankBundle\RPC\SampleService"></service>
-        <service id="jez433_clank.periodic_sample_service" class="Jez433\ClankBundle\Service\SampleService"></service>
+        <service id="jdare_clank.rpc_sample_service" class="jdare\ClankBundle\RPC\SampleService"></service>
+        <service id="jdare_clank.periodic_sample_service" class="jdare\ClankBundle\Service\SampleService"></service>
 
 
     </services>
@@ -85,7 +85,7 @@
 
     <!--
     <services>
-        <service id="jez433_clank.example" class="%jez433_clank.example.class%">
+        <service id="jdare_clank.example" class="%jdare_clank.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

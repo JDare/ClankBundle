@@ -1,6 +1,6 @@
 <?php
 
-namespace Jez433\ClankBundle\Tests\Controller;
+namespace jdare\ClankBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

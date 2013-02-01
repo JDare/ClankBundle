@@ -1,6 +1,6 @@
 <?php
 
-namespace Jez433\ClankBundle\Command;
+namespace jdare\ClankBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -20,7 +20,7 @@ class ServerCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $main = $this->getContainer()->get("jez433_clank.entry_point");
+        $main = $this->getContainer()->get("jdare_clank.entry_point");
 
         $output->writeln("Starting Clank");
 
