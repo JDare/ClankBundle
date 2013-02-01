@@ -47,51 +47,6 @@ var Clank = (function()
     };
 
 
-    /**
-     *
-     * Remote Procedure Call
-     *
-     * @param {String} command
-     * @param {Object} payload
-     */
-    ClankSocket.prototype.call = function(command, payload)
-    {
-        this._session.call(command, payload);
-    }
-
-    /**
-     *
-     * Subscribe to a topic/channel using pubsub
-     *
-     * @param {string} channel channel to subscribe to
-     * @param {function} publication_callback a function to be called when something is published in this channel.
-     */
-    ClankSocket.prototype.subscribe = function(channel, publication_callback){
-        this._session.subscribe(channel, publication_callback);
-    }
-
-    /**
-     *
-     * Subscribe to a topic/channel using pubsub
-     *
-     * @param {string} channel channel to subscribe to
-     */
-    ClankSocket.prototype.unsubscribe = function(channel){
-        this._session.unsubscribe(channel);
-    }
-
-    /**
-     *
-     * Publish to a topic/channel using pubsub
-     *
-     * @param {string} channel channel to publish to
-     * @param {object} payload data payload for this channel
-     */
-    ClankSocket.prototype.publish = function(channel, payload)
-    {
-        this._session.call(channel, payload);
-    }
-
     /***************************************
      * Event Handling, Listeners etc.
      */

@@ -7,14 +7,43 @@ Hello!
             var clank = Clank.connect("ws://clank.local:8080");
 
             clank.on("socket/connect", function(session){
-                //console.log("Connected!");
-                session.subscribe("sample/channel");
-            })
+
+                /**
+                 * Pub Sub Example
+                 *
+                 */
+
+                session.subscribe("sample/channel", function(uri, payload){
+                    console.log("Received message", uri, payload);
+                });
+
+                session.publish("sample/channel", {data: "Sup Fools"});
+
+
+
+
+                /**
+                 * RPC Example
+                 */
+                session.call("sample/add", [2, 5])
+                    .then(
+
+                        function(result)
+                        {
+                            console.log("RPC Result", result);
+                        },
+
+                        function(error, desc)
+                        {
+                            console.log("RPC Error", error, desc);
+                        }
+
+                    );
+            });
 
             clank.on("socket/disconnect", function(data){
                 //console.log("Disconnected", data);
-            })
-
+            });
 
         })
     })(jQuery);
