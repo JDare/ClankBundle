@@ -30,11 +30,13 @@ class RPCHandler implements RPCHandlerInterface
 
         $handler = $this->getHandler($parts[0]);
 
+        $method = $this->toCamelCase($parts[1]);
+
         $result = null;
         if ($handler)
         {
             try{
-                $result = call_user_func(array($handler, $parts[1]), $conn, $params);
+                $result = call_user_func(array($handler, $method), $conn, $params);
             }catch(\Exception $e)
             {
                 $conn->callError($id, $topic, $e->getMessage(),  array("code"=> $e->getCode(), "rpc" => $topic->getId(), "params" => $params));
@@ -78,6 +80,22 @@ class RPCHandler implements RPCHandlerInterface
     public function setRPCServices($rpcServices)
     {
         $this->rpcServices = $rpcServices;
+    }
+
+    /**
+     * source: http://www.paulferrett.com/2009/php-camel-case-functions/
+     *
+     * Translates a string with underscores into camel case (e.g. first_name -&gt; firstName)
+     * @param    string   $str                     String in underscore format
+     * @param    bool     $capitalise_first_char   If true, capitalise the first char in $str
+     * @return   string                              $str translated into camel caps
+     */
+    private function toCamelCase($str, $capitalise_first_char = false) {
+        if($capitalise_first_char) {
+            $str[0] = strtoupper($str[0]);
+        }
+        $func = create_function('$c', 'return strtoupper($c[1]);');
+        return preg_replace_callback('/_([a-z])/', $func, $str);
     }
 
 

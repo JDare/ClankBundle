@@ -16,7 +16,7 @@ class AcmeService
      * @param array $params
      * @return int
      */
-    public function add(Conn $conn, $params)
+    public function addFunc(Conn $conn, $params)
     {
 
         return array("result" => array_sum($params));
