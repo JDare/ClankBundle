@@ -1,6 +1,6 @@
 <?php
 
-namespace Jez433\ClankBundle\DependencyInjection;
+namespace jdare\ClankBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('jez433_clank');
+        $rootNode = $treeBuilder->root('jdare_clank');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

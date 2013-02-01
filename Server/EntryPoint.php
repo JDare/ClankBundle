@@ -1,9 +1,9 @@
 <?php
 
-namespace Jez433\ClankBundle\Server;
+namespace jdare\ClankBundle\Server;
 
 use Symfony\Component\Console\Output\OutputInterface;
-use Jez433\ClankBundle\Server\Type\ServerTypeInterface;
+use jdare\ClankBundle\Server\Type\ServerTypeInterface;
 
 class EntryPoint
 {

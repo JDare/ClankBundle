@@ -1,6 +1,6 @@
 <?php
 
-namespace Jez433\ClankBundle\Controller;
+namespace jdare\ClankBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

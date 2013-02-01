@@ -1,6 +1,6 @@
 <?php
 
-namespace Jez433\ClankBundle\RPC;
+namespace jdare\ClankBundle\RPC;
 
 class SampleService
 {

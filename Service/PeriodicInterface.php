@@ -1,6 +1,6 @@
 <?php
 
-namespace Jez433\ClankBundle\Service;
+namespace jdare\ClankBundle\Service;
 
 interface PeriodicInterface
 {
