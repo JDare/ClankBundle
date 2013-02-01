@@ -20,10 +20,5 @@
     "autoload": {
         "psr-0": { "jdare\\ClankBundle": "" }
     },
-    "target-dir": "jdare/ClankBundle",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.0.x-dev"
-        }
-    }
+    "target-dir": "jdare/ClankBundle"
 }
