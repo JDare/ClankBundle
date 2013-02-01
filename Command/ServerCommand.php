@@ -22,7 +22,9 @@ class ServerCommand extends ContainerAwareCommand
     {
         $main = $this->getContainer()->get("jez433_clank.entry_point");
 
-        $output->writeln("Launching Ratchet Server...");
+        $output->writeln("Starting Clank");
+
+        $main->setOutput($output);
 
         $main->launch();
 

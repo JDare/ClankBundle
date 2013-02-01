@@ -5,6 +5,14 @@ Hello!
     (function($){
         $(function(){
             var clank = Clank.connect("ws://clank.local:8080");
+
+            clank.on("socket/connect", function(){
+                console.log("Connected!");
+            })
+
+            clank.on("socket/disconnect", function(data){
+                console.log("Disconnected", data);
+            })
         })
     })(jQuery);
 
