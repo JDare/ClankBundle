@@ -5,103 +5,90 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="JDare_clank.web_socket_server.class">JDare\ClankBundle\Server\Type\WebSocketServerType</parameter>
-        <parameter key="JDare_clank.web_socket_server.port">8080</parameter>
-        <parameter key="JDare_clank.web_socket_server.host"></parameter>
+        <parameter key="jdare_clank.web_socket_server.class">JDare\ClankBundle\Server\Type\WebSocketServerType</parameter>
+        <parameter key="jdare_clank.web_socket_server.port">8080</parameter>
+        <parameter key="jdare_clank.web_socket_server.host"></parameter>
 
-        <parameter key="JDare_clank.web_socket_server.periodic" type="collection">
+        <parameter key="jdare_clank.web_socket_server.periodic" type="collection">
             <!-- Sample Periodic Service, being executed every 5000ms (5s). Uncomment to enable -->
-            <!-- <parameter key="JDare_clank.periodic_sample_service">5000</parameter> -->
+            <!-- <parameter key="jdare_clank.periodic_sample_service">5000</parameter> -->
         </parameter>
 
-        <parameter key="JDare_clank.rpc_services" type="collection">
-            <!-- Sample RPC Service. Key is the service ID, Argument is the "Network NameSpace". Uncomment to enable -->
-            <parameter type="collection">
+        <parameter key="jdare_clank.rpc_services" type="collection">
+            <!-- Sample RPC Service. Uncomment to enable -->
+            <!--<parameter type="collection">
                 <parameter key="name">sample</parameter>
-                <parameter key="service">JDare_clank.rpc_sample_service</parameter>
-            </parameter>
-
+                <parameter key="service">jdare_clank.rpc_sample_service</parameter>
+            </parameter>-->
         </parameter>
 
-        <parameter key="JDare_clank.topic_services" type="collection">
-            <!-- Sample RPC Service. Key is the service ID, Argument is the "Network NameSpace". Uncomment to enable -->
-            <parameter type="collection">
+        <parameter key="jdare_clank.topic_services" type="collection">
+            <!-- Sample Topic Service. Uncomment to enable -->
+            <!--<parameter type="collection">
                 <parameter key="name">sample/channel</parameter>
-                <parameter key="service">JDare_clank.topic_sample_service</parameter>
-            </parameter>
+                <parameter key="service">jdare_clank.topic_sample_service</parameter>
+            </parameter>-->
 
         </parameter>
 
 
-        <parameter key="JDare_clank.servers" type="collection">
-            <parameter>JDare_clank.web_socket_server</parameter>
+        <parameter key="jdare_clank.servers" type="collection">
+            <parameter>jdare_clank.web_socket_server</parameter>
         </parameter>
     </parameters>
 
 
     <services>
 	
-		<service id="JDare_clank.twig.clank_extension" class="JDare\ClankBundle\Twig\ClankExtension">
+		<service id="jdare_clank.twig.clank_extension" class="JDare\ClankBundle\Twig\ClankExtension">
 	        <tag name="twig.extension" />
 	        <argument type="service" id="service_container" />
 		</service>
 
-        <service id="JDare_clank.entry_point" class="JDare\ClankBundle\Server\EntryPoint">
+        <service id="jdare_clank.entry_point" class="JDare\ClankBundle\Server\EntryPoint">
             <argument type="service" id="service_container" />
-            <argument>%JDare_clank.servers%</argument>
+            <argument>%jdare_clank.servers%</argument>
         </service>
 
-        <service id="JDare_clank.web_socket_server" class="%JDare_clank.web_socket_server.class%">
-            <argument>%JDare_clank.web_socket_server.host%</argument>
-            <argument>%JDare_clank.web_socket_server.port%</argument>
+        <service id="jdare_clank.web_socket_server" class="%jdare_clank.web_socket_server.class%">
+            <argument>%jdare_clank.web_socket_server.host%</argument>
+            <argument>%jdare_clank.web_socket_server.port%</argument>
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
             <call method="setPeriodicServices">
-                <argument>%JDare_clank.web_socket_server.periodic%</argument>
+                <argument>%jdare_clank.web_socket_server.periodic%</argument>
             </call>
         </service>
 
-        <service id="JDare_clank.clank_app" class="JDare\ClankBundle\Server\App\ClankApp">
-            <argument type="service" id="JDare_clank.clank_handler_rpc" />
-            <argument type="service" id="JDare_clank.clank_handler_topic" />
+        <service id="jdare_clank.clank_app" class="JDare\ClankBundle\Server\App\ClankApp">
+            <argument type="service" id="jdare_clank.clank_handler_rpc" />
+            <argument type="service" id="jdare_clank.clank_handler_topic" />
         </service>
 
-        <service id="JDare_clank.clank_handler_rpc" class="JDare\ClankBundle\Server\App\Handler\RPCHandler">
+        <service id="jdare_clank.clank_handler_rpc" class="JDare\ClankBundle\Server\App\Handler\RPCHandler">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
             <call method="setRPCServices">
-                <argument>%JDare_clank.rpc_services%</argument>
+                <argument>%jdare_clank.rpc_services%</argument>
             </call>
         </service>
 
-        <service id="JDare_clank.clank_handler_topic" class="JDare\ClankBundle\Server\App\Handler\TopicHandler">
+        <service id="jdare_clank.clank_handler_topic" class="JDare\ClankBundle\Server\App\Handler\TopicHandler">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
             <call method="setTopicServices">
-                <argument>%JDare_clank.topic_services%</argument>
+                <argument>%jdare_clank.topic_services%</argument>
             </call>
         </service>
 
         <!-- Sample Services examples -->
-        <service id="JDare_clank.topic_sample_service" class="JDare\ClankBundle\Topic\AcmeTopic"></service>
-        <service id="JDare_clank.rpc_sample_service" class="JDare\ClankBundle\RPC\AcmeService"></service>
-        <service id="JDare_clank.periodic_sample_service" class="JDare\ClankBundle\Periodic\AcmePeriodic"></service>
+        <service id="jdare_clank.topic_sample_service" class="JDare\ClankBundle\Topic\AcmeTopic"></service>
+        <service id="jdare_clank.rpc_sample_service" class="JDare\ClankBundle\RPC\AcmeService"></service>
+        <service id="jdare_clank.periodic_sample_service" class="JDare\ClankBundle\Periodic\AcmePeriodic"></service>
 
 
     </services>
-
-
-
-
-    <!--
-    <services>
-        <service id="JDare_clank.example" class="%JDare_clank.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-
-	-->
 </container>
