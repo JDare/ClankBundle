@@ -38,6 +38,11 @@ class ClankExtensionClass extends Extension
             $this->setupWebSocketServer($config['web_socket_server']);
         }
 
+        if (isset($config['rpc']) && $config['rpc'])
+        {
+            $this->setupRPCServices($config['rpc']);
+        }
+
     }
 
     private function setupWebSocketServer($config)
@@ -51,6 +56,11 @@ class ClankExtensionClass extends Extension
 
         if (isset($config['host']) && $config['host'])
             $this->container->setParameter('jdare_clank.web_socket_server.host', $config['host']);
+    }
+
+    private function setupRPCServices($config)
+    {
+        $this->container->setParameter('jdare_clank.rpc_services', $config);
     }
 
     public function getAlias()

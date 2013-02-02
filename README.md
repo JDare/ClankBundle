@@ -5,14 +5,15 @@ About
 --------------
 A Symfony2 Bundle for use with Ratchet WebSocket Server
 
-Powered By: [Ratchet](http://socketo.me) and [Autobahn JS](http://autobahn.ws/js)
+Powered By: [Ratchet](http://socketo.me) and [Autobahn JS](http://autobahn.ws/js), with [Symfony2](http://symfony.com/)
 
 Resources
 --------------
 * [Installation Instructions](#installation-instructions)
-* [Setup Client Javascript](Resources/docs/ClientSetup.md)
-* [Server Side RPC's](Resources/docs/RPCSetup.md)
-* [Custom Topic Handlers](Resources/docs/TopicSetup.md)
+* [Client Javascript](Resources/docs/ClientSetup.md)
+* [Server Side of RPC](Resources/docs/RPCSetup.md)
+* [PubSub Topic Handlers](Resources/docs/TopicSetup.md)
+* [Periodic Services](Resources/docs/PeriodicSetup.md)(functions to be run every x seconds with the IO loop.)
 
 
 Installation Instructions
@@ -93,6 +94,6 @@ This means the websocket server is now up and running!
 
 ### Next Steps
 
-For further documentations on how to use Clank, please see the resources below.
+For further documentations on how to use Clank, please continue with the client side setup.
 
 * [Setup Client Javascript](Resources/docs/ClientSetup.md)

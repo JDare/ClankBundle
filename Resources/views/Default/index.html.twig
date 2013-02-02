@@ -11,7 +11,7 @@ Hello!
                 /**
                  * Pub Sub Example
                  *
-                 */
+
 
                 session.subscribe("sample/channel", function(uri, payload){
                     console.log("Received message", uri, payload);
@@ -19,14 +19,14 @@ Hello!
 
                 session.publish("sample/channel", {data: "Sup String"});
 
-
+                 */
 
 
                 /**
                  * RPC Example
                  */
 
-                session.call("sample/add_func", [2, 5])
+                session.call("tester/add_func", [2, 5])
 
                     .then(
 

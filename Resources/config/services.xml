@@ -9,27 +9,23 @@
         <parameter key="jdare_clank.web_socket_server.port" />
         <parameter key="jdare_clank.web_socket_server.host" />
 
-        <parameter key="jdare_clank.web_socket_server.periodic" type="collection">
+        <parameter key="jdare_clank.web_socket_server.periodic" type="collection" />
             <!-- Sample Periodic Service, being executed every 5000ms (5s). Uncomment to enable -->
             <!-- <parameter key="jdare_clank.periodic_sample_service">5000</parameter> -->
-        </parameter>
 
-        <parameter key="jdare_clank.rpc_services" type="collection">
+        <parameter key="jdare_clank.rpc_services" type="collection" />
             <!-- Sample RPC Service. Uncomment to enable -->
             <!--<parameter type="collection">
                 <parameter key="name">sample</parameter>
                 <parameter key="service">jdare_clank.rpc_sample_service</parameter>
             </parameter>-->
-        </parameter>
 
-        <parameter key="jdare_clank.topic_services" type="collection">
+        <parameter key="jdare_clank.topic_services" type="collection" />
             <!-- Sample Topic Service. Uncomment to enable -->
             <!--<parameter type="collection">
                 <parameter key="name">sample/channel</parameter>
                 <parameter key="service">jdare_clank.topic_sample_service</parameter>
             </parameter>-->
-
-        </parameter>
 
 
         <parameter key="jdare_clank.servers" type="collection">
@@ -85,9 +81,9 @@
         </service>
 
         <!-- Sample Services examples -->
-        <service id="jdare_clank.topic_sample_service" class="JDare\ClankBundle\Topic\AcmeTopic"></service>
-        <service id="jdare_clank.rpc_sample_service" class="JDare\ClankBundle\RPC\AcmeService"></service>
-        <service id="jdare_clank.periodic_sample_service" class="JDare\ClankBundle\Periodic\AcmePeriodic"></service>
+        <service id="jdare_clank.topic_sample_service" class="JDare\ClankBundle\Topic\AcmeTopic" />
+        <service id="jdare_clank.rpc_sample_service" class="JDare\ClankBundle\RPC\AcmeService" />
+        <service id="jdare_clank.periodic_sample_service" class="JDare\ClankBundle\Periodic\AcmePeriodic" />
 
 
     </services>
