@@ -19,7 +19,7 @@ Resources
 
 Code Cookbook
 --------------
-*[Sharing Config between Server and Client](Resources/docs/code/ShareConfig.md)
+* [Sharing Config between Server and Client](Resources/docs/code/ShareConfig.md)
 
 Sample Projects
 --------------
