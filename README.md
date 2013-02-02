@@ -30,7 +30,22 @@ Then update composer to install the new packages:
 php composer.phar update
 ```
 
-###Step 2: Add to Assetic Bundles
+###Step 2: Add to Your App Kernel
+
+```php
+<?php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new JDare\ClankBundle\JDareClankBundle(),
+    );
+}
+```
+
+###Step 3: Add to Assetic Bundles
 
 Add "JDareClankBundle" to your assetic bundles in app/config (this is required to render the client side code).
 
