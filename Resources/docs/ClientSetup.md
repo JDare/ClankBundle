@@ -111,5 +111,8 @@ myClank.on("socket/connect", function(session){
 })
 ```
 
+If your application requires more complexity than just repeating messages in channels, please see [custom server side topic handlers](TopicSetup.md)
+
+___
 For more information on using the WAMP Session objects, please refer to the [official autobahn documentation](http://autobahn.ws/js)
 
