@@ -19,5 +19,6 @@
     },
     "autoload": {
         "psr-0": { "JDare\\ClankBundle": "" }
-    }
+    },
+    "target-dir": "JDare/ClankBundle"
 }

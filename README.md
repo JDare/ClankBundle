@@ -30,7 +30,7 @@ Then update composer to install the new packages:
 php composer.phar update
 ```
 
-###Step 2: Add to Your App Kernel
+###Step 2: Add to your App Kernel
 
 ```php
 <?php
