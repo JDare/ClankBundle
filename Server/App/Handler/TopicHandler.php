@@ -81,9 +81,18 @@ class TopicHandler implements TopicHandlerInterface
 
     public function getTopicHandler(Topic $topic)
     {
+        //get network namespace to see if its valid
+        $parts = explode("/", $topic);
+        if ($parts <= 0)
+        {
+            return false;
+        }
+
+        $serviceMatch = $parts[0];
+
         foreach($this->getTopicServices() as $topicService)
         {
-            if ($topicService['name'] == $topic->getId())
+            if ($topicService['name'] === $serviceMatch)
                 return $this->getContainer()->get($topicService['service']);
         }
         return false;

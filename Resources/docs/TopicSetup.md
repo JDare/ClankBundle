@@ -56,19 +56,15 @@ class AcmeTopic implements TopicInterface
      */
     public function onPublish(Conn $conn, $topic, $event, array $exclude, array $eligible)
     {
-        //can filter per request for this topic and handle it, e.g.
-
         /*
-        switch ($event['type'])
-        {
-            case "shout":
-                $this->shout($event['payload']);
-                break;
-            case "whisper":
-                $this->whisper($event['payload']);
-                break;
-        }
+        $topic->getUri() will contain the FULL requested uri, so you can proceed based on that
+
+        e.g.
+
+        if ($topic->getUri() == "acme/channel/shout")
+            //shout something to all subs.
         */
+
 
         $topic->broadcast(array(
             "sender" => $conn->resourceId,
@@ -109,7 +105,7 @@ clank:
     ...
     topic:
         -
-            name: "acme/channel" #Important! this is the topic name used to match to this service!
+            name: "acme" #Important! this is the topic namespace used to match to this service!
             service: "acme_hello.topic_sample_service" #The service id.
     # Add as many as you need
     #    -
@@ -119,7 +115,7 @@ clank:
 
 The name parameter for each class will match the network namespace for listening to events on this topic.
 
-The following javascript will show connecting to this topic, notice how "acme/channel" matches the name we set for this service:
+The following javascript will show connecting to this topic, notice how "acme/channel" will match the name "acme" we gave the service.
 
 ```javascript
     ...
@@ -136,4 +132,18 @@ The following javascript will show connecting to this topic, notice how "acme/ch
     session.publish("acme/channel", {msg: "I won't see this"});
 ```
 
-_For more information on the Client Side of Clank, please see [Client Side Setup](ClientSetup.md)_
+If we wanted to include dynamic channels based on that namespace, we could include them, and they will all get routed through that Topic Handler.
+
+```javascript
+    ...
+
+    //the callback function in "subscribe" is called everytime an event is published in that channel.
+    session.subscribe("acme/channel/id/12345", function(uri, payload){
+        console.log("Received message", payload.msg);
+    });
+
+    session.publish("acme/channel/id/12345", {msg: "This is a message!"});
+```
+_Please note, this is not secure as anyone can subscribe to these channels by making a request for them. For true private channels, you will need to implement server side security_
+
+For more information on the Client Side of Clank, please see [Client Side Setup](ClientSetup.md)

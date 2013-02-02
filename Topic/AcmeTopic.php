@@ -46,19 +46,9 @@ class AcmeTopic implements TopicInterface
      */
     public function onPublish(Conn $conn, $topic, $event, array $exclude, array $eligible)
     {
-        //can filter per request for this topic and handle it, e.g.
-
         /*
-        switch ($event['type'])
-        {
-            case "shout":
-                $this->whisper($event['shout']);
-                break;
-            case "whisper":
-                $this->whisper($event['payload']);
-                break;
-        }
-        */
+         * $topic contains the FULL uri, so if anything extra was added to that, you can find out the full path based on that.
+         */
 
         $topic->broadcast(array(
             "sender" => $conn->resourceId,

@@ -13,11 +13,11 @@ Hello!
                  *
                 */
 
-                session.subscribe("sample/channel", function(uri, payload){
+                session.subscribe("sample/channel/1234", function(uri, payload){
                     console.log("Received message", uri, payload);
                 });
 
-                session.publish("sample/channel", {data: "Sup String"});
+                session.publish("sample/channel/1234", "Sup String");
 
 
 
