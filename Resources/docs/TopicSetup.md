@@ -57,11 +57,11 @@ class AcmeTopic implements TopicInterface
     public function onPublish(Conn $conn, $topic, $event, array $exclude, array $eligible)
     {
         /*
-        $topic->getUri() will contain the FULL requested uri, so you can proceed based on that
+        $topic->getId() will contain the FULL requested uri, so you can proceed based on that
 
         e.g.
 
-        if ($topic->getUri() == "acme/channel/shout")
+        if ($topic->getId() == "acme/channel/shout")
             //shout something to all subs.
         */
 
