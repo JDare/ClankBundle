@@ -20,7 +20,7 @@ Add the following to your composer.json
 ```javascript
 {
     "require": {
-        "JDare/clank-bundle": "0.1.*"
+        "jdare/clank-bundle": "0.1.*"
     }
 }
 ```
