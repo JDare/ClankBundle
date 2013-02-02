@@ -15,8 +15,20 @@ Installation Instructions
 --------------
 
 ###Step 1: Install via composer
-Instructions TODO
+Add the following to your composer.json
 
+```javascript
+{
+    "require": {
+        "jdare/clank-bundle": "0.1.*"
+    }
+}
+```
+
+Then update composer to install the new packages:
+```command
+php composer.phar update
+```
 
 ###Step 2: Add to Assetic Bundles
 
