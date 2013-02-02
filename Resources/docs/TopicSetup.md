@@ -82,9 +82,9 @@ class AcmeTopic implements TopicInterface
 
 The 3 methods that must be implemented are:
 
-*onSubscribe(Conn $conn, $topic)
-*onUnSubscribe(Conn $conn, $topic)
-*onPublish(Conn $conn, $topic, $event, array $exclude, array $eligible)
+* onSubscribe(Conn $conn, $topic)
+* onUnSubscribe(Conn $conn, $topic)
+* onPublish(Conn $conn, $topic, $event, array $exclude, array $eligible)
 
 $conn is the connection object of the client who has initiated this event.
 
