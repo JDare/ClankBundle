@@ -56,4 +56,16 @@ assetic:
     bundles:        [ JDareClankBundle ]
 ```
 
+###Step 4: Configure WebSocket Server
 
+Add the following to your app/config.yml
+
+```yaml
+# Clank Configuration
+clank:
+    web_socket_server:
+        port: 8080        #The port the socket server will listen on
+        host: 127.0.0.1   #The host to listen on (optional)
+```
+
+Note: when connecting on the client, if possible use the same values as here to ensure compatibility for sessions etc.

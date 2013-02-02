@@ -99,7 +99,7 @@ class WebSocketServerType implements ServerTypeInterface
 
     public function getAddress()
     {
-        return ($this->host)?$this->host:"*" . ":" . $this->port;
+        return (($this->host)?$this->host:"*") . ":" . $this->port;
     }
 
     public function getName()

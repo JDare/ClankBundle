@@ -6,8 +6,8 @@
 
     <parameters>
         <parameter key="jdare_clank.web_socket_server.class">JDare\ClankBundle\Server\Type\WebSocketServerType</parameter>
-        <parameter key="jdare_clank.web_socket_server.port">8080</parameter>
-        <parameter key="jdare_clank.web_socket_server.host"></parameter>
+        <parameter key="jdare_clank.web_socket_server.port" />
+        <parameter key="jdare_clank.web_socket_server.host" />
 
         <parameter key="jdare_clank.web_socket_server.periodic" type="collection">
             <!-- Sample Periodic Service, being executed every 5000ms (5s). Uncomment to enable -->
