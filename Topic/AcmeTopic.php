@@ -1,8 +1,8 @@
 <?php
 
-namespace jdare\ClankBundle\Topic;
+namespace JDare\ClankBundle\Topic;
 
-use jdare\ClankBundle\Topic\TopicInterface;
+use JDare\ClankBundle\Topic\TopicInterface;
 
 use Ratchet\ConnectionInterface as Conn;
 

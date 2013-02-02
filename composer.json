@@ -1,9 +1,9 @@
 {
-    "name": "jdare/clank-bundle",
+    "name": "JDare/clank-bundle",
     "type": "symfony-bundle",
     "description": "Symfony ClankBundle",
     "keywords": ["Web Socket Application"],
-    "homepage": "https://github.com/jdare/ClankBundle",
+    "homepage": "https://github.com/JDare/ClankBundle",
     "license": "MIT",
     "authors": [
         {
@@ -18,7 +18,7 @@
         "cboden/Ratchet": "0.2.*"
     },
     "autoload": {
-        "psr-0": { "jdare\\ClankBundle": "" }
+        "psr-0": { "JDare\\ClankBundle": "" }
     },
-    "target-dir": "jdare/ClankBundle"
+    "target-dir": "JDare/ClankBundle"
 }

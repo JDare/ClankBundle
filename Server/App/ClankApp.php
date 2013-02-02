@@ -1,12 +1,12 @@
 <?php
 
-namespace jdare\ClankBundle\Server\App;
+namespace JDare\ClankBundle\Server\App;
 
 use Ratchet\ConnectionInterface as Conn;
 use Ratchet\Wamp\WampServerInterface;
 
-use jdare\ClankBundle\Server\App\Handler\RPCHandlerInterface;
-use jdare\ClankBundle\Server\App\Handler\TopicHandlerInterface;
+use JDare\ClankBundle\Server\App\Handler\RPCHandlerInterface;
+use JDare\ClankBundle\Server\App\Handler\TopicHandlerInterface;
 
 class ClankApp implements WampServerInterface {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace jdare\ClankBundle\Server\Type;
+namespace JDare\ClankBundle\Server\Type;
 
 interface ServerTypeInterface
 {

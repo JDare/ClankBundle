@@ -1,6 +1,6 @@
 <?php
 
-namespace jdare\ClankBundle\Twig;
+namespace JDare\ClankBundle\Twig;
 
 class ClankExtension extends \Twig_Extension
 {
@@ -25,6 +25,6 @@ class ClankExtension extends \Twig_Extension
 
     public function clientOutput()
     {
-        return $this->container->get("templating")->render("jdareClankBundle::client.html.twig");
+        return $this->container->get("templating")->render("JDareClankBundle::client.html.twig");
     }
 }

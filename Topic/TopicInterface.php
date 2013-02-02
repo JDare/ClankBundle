@@ -1,6 +1,6 @@
 <?php
 
-namespace jdare\ClankBundle\Topic;
+namespace JDare\ClankBundle\Topic;
 
 use Ratchet\ConnectionInterface as Conn;
 

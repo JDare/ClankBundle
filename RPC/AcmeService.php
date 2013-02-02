@@ -1,6 +1,6 @@
 <?php
 
-namespace jdare\ClankBundle\RPC;
+namespace JDare\ClankBundle\RPC;
 
 use Ratchet\ConnectionInterface as Conn;
 

@@ -20,7 +20,7 @@ Add the following to your composer.json
 ```javascript
 {
     "require": {
-        "jdare/clank-bundle": "0.1.*"
+        "JDare/clank-bundle": "0.1.*"
     }
 }
 ```
@@ -32,13 +32,13 @@ php composer.phar update
 
 ###Step 2: Add to Assetic Bundles
 
-Add "jdareClankBundle" to your assetic bundles in app/config (this is required to render the client side code).
+Add "JDareClankBundle" to your assetic bundles in app/config (this is required to render the client side code).
 
 ```yaml
 # Assetic Configuration
 assetic:
     ...
-    bundles:        [ jdareClankBundle ]
+    bundles:        [ JDareClankBundle ]
 ```
 
 

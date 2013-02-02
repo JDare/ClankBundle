@@ -1,6 +1,6 @@
 <?php
 
-namespace jdare\ClankBundle\Server\App\Handler;
+namespace JDare\ClankBundle\Server\App\Handler;
 
 use Ratchet\ConnectionInterface as Conn;
 

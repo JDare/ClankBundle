@@ -1,9 +1,9 @@
 <?php
 
-namespace jdare\ClankBundle;
+namespace JDare\ClankBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class jdareClankBundle extends Bundle
+class JDareClankBundle extends Bundle
 {
 }

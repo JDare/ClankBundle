@@ -1,6 +1,6 @@
 <?php
 
-namespace jdare\ClankBundle\Periodic;
+namespace JDare\ClankBundle\Periodic;
 
 class AcmePeriodic implements PeriodicInterface
 {
