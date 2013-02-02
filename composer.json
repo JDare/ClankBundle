@@ -1,5 +1,5 @@
 {
-    "name": "JDare/clank-bundle",
+    "name": "jdare/clank-bundle",
     "type": "symfony-bundle",
     "description": "Symfony ClankBundle",
     "keywords": ["Web Socket Application"],
@@ -19,6 +19,5 @@
     },
     "autoload": {
         "psr-0": { "JDare\\ClankBundle": "" }
-    },
-    "target-dir": "JDare/ClankBundle"
+    }
 }
