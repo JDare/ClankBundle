@@ -31,19 +31,19 @@ The following commands are available to a ClankSocket object returned by Clank.c
 
 #### ClankSocket.on(event, callback)
 
-This allows you to listen for events called by ClankSocket.
+This allows you to listen for events called by ClankSocket. The only events fired currently are "socket/connect" and "socket/disconnect".
 
 ```javascript
 var myClank = Clank.connect("ws://localhost:8080");
 
 myClank.on("socket/connect", function(session){
-    //session is an Autobahn JS session.
+    //session is an Autobahn JS WAMP session.
 
     console.log("Successfully Connected!");
 })
 
 myClank.on("socket/disconnect", function(error){
-    //error provides us with some insignt into the disconnection: error.reason and error.code
+    //error provides us with some insight into the disconnection: error.reason and error.code
 
     console.log("Disconnected for " + error.reason + " with code " + error.code);
 })
@@ -110,3 +110,6 @@ myClank.on("socket/connect", function(session){
     session.publish("sample/channel", {msg: "I won't see this"});
 })
 ```
+
+For more information on using the WAMP Session objects, please refer to the [official autobahn documentation](http://autobahn.ws/js)
+
