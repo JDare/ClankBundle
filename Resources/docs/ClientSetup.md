@@ -62,6 +62,8 @@ myClank.on("socket/disconnect", function(error){
 
 As seen from the example above, Clank.js is a wrapper around Autobahn.js which allows for remote procedure calls and pub sub behaviour.
 
+If you want to avoid hardcoding the connection URI here, see the code tip on [sharing the config](code/SharingConfig.md)
+
 To make a Remote Procedure Call (RPC) from the client you can do the following:
 
 #### session.call(commandName, parameters)

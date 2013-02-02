@@ -3,9 +3,11 @@ ClankBundle
 
 About
 --------------
-A Symfony2 Bundle for use with Ratchet WebSocket Server
+Clank is a Symfony2 Bundle designed to bring together WebSocket functionality in a easy to use application architecture.
 
-Powered By: [Ratchet](http://socketo.me) and [Autobahn JS](http://autobahn.ws/js), with [Symfony2](http://symfony.com/)
+Much like Socket.IO it provides both server side and client side code ensuring you have to write as little as possible to get your app up and running.
+
+Powered By [Ratchet](http://socketo.me) and [Autobahn JS](http://autobahn.ws/js), with [Symfony2](http://symfony.com/)
 
 Resources
 --------------
@@ -14,6 +16,10 @@ Resources
 * [Server Side of RPC](Resources/docs/RPCSetup.md)
 * [PubSub Topic Handlers](Resources/docs/TopicSetup.md)
 * [Periodic Services](Resources/docs/PeriodicSetup.md)(functions to be run every x seconds with the IO loop.)
+
+Code Cookbook
+--------------
+*[Sharing Config between Server and Client](Resources/docs/code/ShareConfig.md)
 
 Sample Projects
 --------------
