@@ -99,15 +99,15 @@ These are all fairly straightforward, here's an example on using them:
 myClank.on("socket/connect", function(session){
 
     //the callback function in "subscribe" is called everytime an event is published in that channel.
-    session.subscribe("sample/channel", function(uri, payload){
+    session.subscribe("acme/channel", function(uri, payload){
         console.log("Received message", payload.msg);
     });
 
-    session.publish("sample/channel", {msg: "This is a message!"});
+    session.publish("acme/channel", {msg: "This is a message!"});
 
-    session.unsubscribe("sample/channel");
+    session.unsubscribe("acme/channel");
 
-    session.publish("sample/channel", {msg: "I won't see this"});
+    session.publish("acme/channel", {msg: "I won't see this"});
 })
 ```
 

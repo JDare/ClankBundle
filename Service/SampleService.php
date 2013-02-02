@@ -1,6 +1,6 @@
 <?php
 
-namespace JDare\ClankBundle\Service;
+namespace JDare\ClankBundle\Periodic;
 
 class SampleService implements PeriodicInterface
 {

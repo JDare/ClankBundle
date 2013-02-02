@@ -43,6 +43,16 @@ class ClankExtensionClass extends Extension
             $this->setupRPCServices($config['rpc']);
         }
 
+        if (isset($config['topic']) && $config['topic'])
+        {
+            $this->setupTopicServices($config['topic']);
+        }
+
+        if (isset($config['periodic']) && $config['periodic'])
+        {
+            $this->setupPeriodicServices($config['periodic']);
+        }
+
     }
 
     private function setupWebSocketServer($config)
@@ -61,6 +71,16 @@ class ClankExtensionClass extends Extension
     private function setupRPCServices($config)
     {
         $this->container->setParameter('jdare_clank.rpc_services', $config);
+    }
+
+    private function setupTopicServices($config)
+    {
+        $this->container->setParameter('jdare_clank.topic_services', $config);
+    }
+
+    private function setupPeriodicServices($config)
+    {
+        $this->container->setParameter('jdare_clank.periodic_services', $config);
     }
 
     public function getAlias()

@@ -9,7 +9,7 @@
         <parameter key="jdare_clank.web_socket_server.port" />
         <parameter key="jdare_clank.web_socket_server.host" />
 
-        <parameter key="jdare_clank.web_socket_server.periodic" type="collection" />
+        <parameter key="jdare_clank.periodic_services" type="collection" />
             <!-- Sample Periodic Service, being executed every 5000ms (5s). Uncomment to enable -->
             <!-- <parameter key="jdare_clank.periodic_sample_service">5000</parameter> -->
 
@@ -53,7 +53,7 @@
                 <argument type="service" id="service_container" />
             </call>
             <call method="setPeriodicServices">
-                <argument>%jdare_clank.web_socket_server.periodic%</argument>
+                <argument>%jdare_clank.periodic_services%</argument>
             </call>
         </service>
 

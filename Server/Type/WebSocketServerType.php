@@ -2,7 +2,7 @@
 
 namespace JDare\ClankBundle\Server\Type;
 
-use JDare\ClankBundle\Service\PeriodicInterface;
+use JDare\ClankBundle\Periodic\PeriodicInterface;
 use Ratchet\WebSocket\WsServer;
 use Ratchet\Wamp\WampServer;
 
@@ -56,14 +56,14 @@ class WebSocketServerType implements ServerTypeInterface
 
     private function setupPeriodicServices()
     {
-        foreach($this->periodicServices as $serviceId => $timer)
+        foreach($this->periodicServices as $pService)
         {
-            $service = $this->getContainer()->get($serviceId);
+            $service = $this->getContainer()->get($pService['service']);
             if (!($service instanceof PeriodicInterface))
             {
-                throw new \Exception("Periodic Services must implement JDare/ClankBundle/Service/PeriodicInterface");
+                throw new \Exception("Periodic Services must implement JDare/ClankBundle/Periodic/PeriodicInterface");
             }
-            $this->loop->addPeriodicTimer(($timer/1000), array($service, "tick"));
+            $this->loop->addPeriodicTimer(($pService['time']/1000), array($service, "tick"));
         }
     }
 
@@ -74,7 +74,7 @@ class WebSocketServerType implements ServerTypeInterface
     {
         $this->app = new WsServer(
             new WampServer(
-                $this->getContainer()->get("JDare_clank.clank_app")
+                $this->getContainer()->get("jdare_clank.clank_app")
             )
         );
     }
