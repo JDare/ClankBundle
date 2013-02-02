@@ -10,9 +10,9 @@ Powered By: [Ratchet](http://socketo.me) and [Autobahn JS](http://autobahn.ws/js
 Resources
 --------------
 * [Installation Instructions](#installation-instructions)
-* [Setup Client Javascript](JDare/ClankBundle/blob/master/Resources/docs/ClientSetup.md)
-* [Server Side RPC's](JDare/ClankBundle/blob/master/Resources/docs/RPCSetup.md)
-* [Custom Topic Handlers](JDare/ClankBundle/blob/master/Resources/docs/TopicSetup.md)
+* [Setup Client Javascript](Resources/docs/ClientSetup.md)
+* [Server Side RPC's](Resources/docs/RPCSetup.md)
+* [Custom Topic Handlers](Resources/docs/TopicSetup.md)
 
 
 Installation Instructions
@@ -95,4 +95,4 @@ This means the websocket server is now up and running!
 
 For further documentations on how to use Clank, please see the resources below.
 
-* [Setup Client Javascript](JDare/ClankBundle/blob/master/Resources/docs/ClientSetup.md)
+* [Setup Client Javascript](Resources/docs/ClientSetup.md)
