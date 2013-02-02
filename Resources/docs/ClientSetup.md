@@ -17,6 +17,15 @@ JDareClankBundle/Resources/public/js/clank.js
 JDareClankBundle/Resources/public/js/vendor/autobahn.min.js
 ```
 
+If using the {{ clank_client }} method, please ensure to run the following when using the production environment:
+
+```command
+php app/console assetic:dump --env=prod --no-debug
+```
+
+This is to ensure the client js libraries are available.
+
+
 ###Step 2: Clank.js
 
 Once the javascript is included, you can start using Clank.js to interact with the web socket server.
