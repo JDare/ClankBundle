@@ -42,7 +42,6 @@ class ClankExtensionClass extends Extension
 
     private function setupWebSocketServer($config)
     {
-        $port = 8080;
         if (isset($config['port']) && $config['port'])
         {
             $port = (int)$config['port'];

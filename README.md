@@ -65,7 +65,30 @@ Add the following to your app/config.yml
 clank:
     web_socket_server:
         port: 8080        #The port the socket server will listen on
-        host: 127.0.0.1   #The host to listen on (optional)
+        host: 127.0.0.1   #(optional) The host ip to bind to
 ```
 
-Note: when connecting on the client, if possible use the same values as here to ensure compatibility for sessions etc.
+_Note: when connecting on the client, if possible use the same values as here to ensure compatibility for sessions etc._
+
+### Step 5: Launching the Server
+
+The Server Side Clank installation is now complete. You should be able to run this from the root of your symfony installation.
+
+```command
+php app/console clank:server
+```
+
+If everything is successful, you will see something similar to the following:
+
+```
+Starting Clank
+Launching Ratchet WS Server on: *:8080
+```
+
+This means the websocket server is now up and running!
+
+### Next Steps
+
+For further documentations on how to use Clank, please see the resources below.
+
+* [Setup Client Javascript](https://github.com/JDare/ClankBundle/tree/master/Resources/doc/ClientSetup.md)
