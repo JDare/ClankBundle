@@ -2,6 +2,8 @@
 
 namespace JDare\ClankBundle\Periodic;
 
+use JDare\ClankBundle\Periodic\PeriodicInterface;
+
 class AcmePeriodic implements PeriodicInterface
 {
     /**
