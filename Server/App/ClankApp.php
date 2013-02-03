@@ -7,15 +7,19 @@ use Ratchet\Wamp\WampServerInterface;
 
 use JDare\ClankBundle\Server\App\Handler\RPCHandlerInterface;
 use JDare\ClankBundle\Server\App\Handler\TopicHandlerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use JDare\ClankBundle\Event\ClientEvent;
+use JDare\ClankBundle\Event\ClientErrorEvent;
 
 class ClankApp implements WampServerInterface {
 
-    protected $topicHandler, $rpcHandler;
+    protected $topicHandler, $rpcHandler, $eventDispatcher;
 
-    public function __construct(RPCHandlerInterface $rpcHandler, TopicHandlerInterface $topicHandler)
+    public function __construct(RPCHandlerInterface $rpcHandler, TopicHandlerInterface $topicHandler, EventDispatcher $eventDispatcher)
     {
         $this->rpcHandler = $rpcHandler;
         $this->topicHandler = $topicHandler;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function onPublish(Conn $conn, $topic, $event, array $exclude, array $eligible) {
@@ -34,8 +38,21 @@ class ClankApp implements WampServerInterface {
         $this->topicHandler->onUnSubscribe($conn, $topic);
     }
 
-    public function onOpen(Conn $conn) {}
-    public function onClose(Conn $conn) {}
-    public function onError(Conn $conn, \Exception $e) {}
+    public function onOpen(Conn $conn) {
+        $event = new ClientEvent($conn, ClientEvent::$connected);
+        $this->eventDispatcher->dispatch("clank.client.connected", $event);
+    }
+
+    public function onClose(Conn $conn) {
+        $event = new ClientEvent($conn, ClientEvent::$disconnected);
+        $this->eventDispatcher->dispatch("clank.client.disconnected", $event);
+    }
+
+    public function onError(Conn $conn, \Exception $e) {
+        $event = new ClientErrorEvent($conn, ClientEvent::$error);
+
+        $event->setException($e);
+        $this->eventDispatcher->dispatch("clank.client.error", $event);
+    }
 
 }

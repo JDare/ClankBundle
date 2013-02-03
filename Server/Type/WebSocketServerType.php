@@ -6,19 +6,19 @@ use JDare\ClankBundle\Periodic\PeriodicInterface;
 use Ratchet\WebSocket\WsServer;
 use Ratchet\Wamp\WampServer;
 
+use Ratchet\Session\SessionProvider;
 
 class WebSocketServerType implements ServerTypeInterface
 {
-    protected $app, $server, $loop, $socket, $host, $port, $periodicServices, $container;
+    protected $app, $server, $loop, $socket, $host, $port, $periodicServices, $session, $container;
 
     public function __construct($host, $port)
     {
+        $this->session = false;
         $this->host = $host;
         $this->port = $port;
 
         $this->periodicServices = array();
-
-
     }
 
     public function launch()
@@ -72,10 +72,24 @@ class WebSocketServerType implements ServerTypeInterface
      */
     private function setupApp()
     {
-        $this->app = new WsServer(
-            new WampServer(
+        if ($this->session instanceof \SessionHandlerInterface)
+        {
+            $serverStack = new SessionProvider(
+                new WampServer(
+                    $this->getContainer()->get("jdare_clank.clank_app")
+                ),
+                $this->session
+            );
+
+        }else{
+            $serverStack = new WampServer(
                 $this->getContainer()->get("jdare_clank.clank_app")
-            )
+            );
+        }
+
+
+        $this->app = new WsServer(
+            $serverStack
         );
     }
 
@@ -107,5 +121,18 @@ class WebSocketServerType implements ServerTypeInterface
         return "Ratchet WS Server";
     }
 
+    public function setSession($session)
+    {
+        if ($session)
+            $session = $this->getContainer()->get($session);
+
+        if ($session instanceof \SessionHandlerInterface)
+            $this->session = $session;
+    }
+
+    public function getSession()
+    {
+        return $this->session;
+    }
 
 }

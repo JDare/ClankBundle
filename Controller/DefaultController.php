@@ -14,6 +14,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+
+        $s = $this->get("session");
+        echo $s->get("test", null);
+        $s->set("test", "session set");
         return array();
     }
 }

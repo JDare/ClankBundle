@@ -53,6 +53,11 @@ class ClankExtensionClass extends Extension
             $this->setupPeriodicServices($config['periodic']);
         }
 
+        if (isset($config['session_handler']) && $config['session_handler'])
+        {
+            $this->setupSessionHandler($config['session_handler']);
+        }
+
     }
 
     private function setupWebSocketServer($config)
@@ -66,6 +71,14 @@ class ClankExtensionClass extends Extension
 
         if (isset($config['host']) && $config['host'])
             $this->container->setParameter('jdare_clank.web_socket_server.host', $config['host']);
+    }
+
+    private function setupSessionHandler($config)
+    {
+        if ($config)
+        {
+            $this->container->setParameter('jdare_clank.session_handler', $config);
+        }
     }
 
     private function setupRPCServices($config)

@@ -1,0 +1,27 @@
+#Session sharing
+
+Thanks to Ratchet its easy to get the shared info from the same website session. As per the [Ratchet documentation](http://socketo.me/docs/sessions), you must use a session handler other than the native one, such as [Symfony PDO Session Handler](http://symfony.com/doc/master/cookbook/configuration/pdo_session_storage.html).
+
+Once this is setup you will have something similar to the following in your config.yml
+
+```yaml
+framework:
+    ...
+    session:
+        handler_id:   session.handler.pdo
+```
+
+This is what informs Symfony2 of what to use as the session handler.
+
+Similarly, we can do the same thing with clank to enable a shared session.
+
+
+```yaml
+clank:
+    ...
+    session_handler:   session.handler.pdo
+```
+
+By using the same value, we are using the same exact service in both the WebSocket server and the Symfony2 application.
+
+_For info on bootstrapping the session with extra information, check out the [Clank Events](ClankEvents.md)_

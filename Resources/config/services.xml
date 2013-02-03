@@ -21,12 +21,14 @@
             </parameter>-->
 
         <parameter key="jdare_clank.topic_services" type="collection" />
+
             <!-- Sample Topic Service. Uncomment to enable -->
             <!--<parameter type="collection">
                 <parameter key="name">sample/channel</parameter>
                 <parameter key="service">jdare_clank.topic_sample_service</parameter>
             </parameter>-->
 
+        <parameter key="jdare_clank.session_handler">null</parameter>
 
         <parameter key="jdare_clank.servers" type="collection">
             <parameter>jdare_clank.web_socket_server</parameter>
@@ -55,11 +57,15 @@
             <call method="setPeriodicServices">
                 <argument>%jdare_clank.periodic_services%</argument>
             </call>
+            <call method="setSession">
+                <argument>%jdare_clank.session_handler%</argument>
+            </call>
         </service>
 
         <service id="jdare_clank.clank_app" class="JDare\ClankBundle\Server\App\ClankApp">
             <argument type="service" id="jdare_clank.clank_handler_rpc" />
             <argument type="service" id="jdare_clank.clank_handler_topic" />
+            <argument type="service" id="event_dispatcher" />
         </service>
 
         <service id="jdare_clank.clank_handler_rpc" class="JDare\ClankBundle\Server\App\Handler\RPCHandler">
@@ -78,6 +84,12 @@
             <call method="setTopicServices">
                 <argument>%jdare_clank.topic_services%</argument>
             </call>
+        </service>
+
+        <service id="clank.client_event.listener" class="JDare\ClankBundle\Event\AcmeClientEventListener">
+            <tag name="kernel.event_listener" event="clank.client.connected" method="onClientConnect" />
+            <tag name="kernel.event_listener" event="clank.client.disconnected" method="onClientDisconnect" />
+            <tag name="kernel.event_listener" event="clank.client.error" method="onClientError" />
         </service>
 
         <!-- Sample Services examples -->
