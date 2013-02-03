@@ -16,6 +16,8 @@ Resources
 * [Server Side of RPC](Resources/docs/RPCSetup.md)
 * [PubSub Topic Handlers](Resources/docs/TopicSetup.md)
 * [Periodic Services](Resources/docs/PeriodicSetup.md)(functions to be run every x seconds with the IO loop.)
+* [Session Management](Resources/docs/SessionSetup.md)
+* [Clank Server Events](Resources/docs/ClankEvents.md)
 
 Code Cookbook
 --------------
