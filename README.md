@@ -25,7 +25,7 @@ Code Cookbook
 
 Sample Projects
 --------------
-* [Clank Chat](http://clankchat.tabletopr.com) [View Source](https://github.com/JDare/ClankChatBundle)
+* [Clank Chat](http://clankchat.tabletopr.com) ([View Source](https://github.com/JDare/ClankChatBundle))
 This is a simple chat room site where a user can join any channel and chat to people there.
 
 Installation Instructions
