@@ -24,4 +24,8 @@ clank:
 
 By using the same value, we are using the same exact service in both the WebSocket server and the Symfony2 application.
 
+If you experience any issues with the session being empty or not as expected. Please ensure that everything is connecting via the same URL, so the cookies can be read.
+
+For information on sharing the config between server and client, read the [Sharing Config](code/SharingConfig.md) Code Cookbook.
+
 _For info on bootstrapping the session with extra information, check out the [Clank Events](ClankEvents.md)_
