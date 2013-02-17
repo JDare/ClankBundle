@@ -30,7 +30,7 @@ to
 clank:
   web_socket_server:
       port: "%clank_port%"
-      host: "%clank_host"
+      host: "%clank_host%"
 ```
 
 ###Step 3: Add to twig for client side access
