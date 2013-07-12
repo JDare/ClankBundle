@@ -59,8 +59,6 @@ class WebSocketServerType implements ServerTypeInterface
         $this->setupPeriodicServices();
 
         $this->server = new \Ratchet\Server\IoServer($this->app, $this->socket, $this->loop);
-        
-
     }
 
     private function setupPeriodicServices()
