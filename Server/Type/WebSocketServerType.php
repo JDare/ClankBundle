@@ -3,9 +3,9 @@
 namespace JDare\ClankBundle\Server\Type;
 
 use JDare\ClankBundle\Periodic\PeriodicInterface;
+use JDare\ClankBundle\Event\ServerEvent;
 use Ratchet\WebSocket\WsServer;
 use Ratchet\Wamp\WampServer;
-
 use Ratchet\Session\SessionProvider;
 
 class WebSocketServerType implements ServerTypeInterface
@@ -20,10 +20,18 @@ class WebSocketServerType implements ServerTypeInterface
 
         $this->periodicServices = array();
     }
+    
+    public function getLoop() {
+        return $this->loop;
+    }
 
     public function launch()
     {
         $this->setupServer();
+        
+        /* Server Event Loop to add other services in the same loop. */
+        $event = new ServerEvent($this->loop);
+        $this->container->get("event_dispatcher")->dispatch("clank.server.launched", $event);        
 
         $this->loop->run();
     }
@@ -38,7 +46,7 @@ class WebSocketServerType implements ServerTypeInterface
         /** @var $loop \React\EventLoop\LoopInterface */
 
         $this->loop = \React\EventLoop\Factory::create();
-
+        
         $this->socket = new \React\Socket\Server($this->loop);
 
         if ($this->host)
@@ -49,7 +57,6 @@ class WebSocketServerType implements ServerTypeInterface
         }
 
         $this->setupPeriodicServices();
-
 
         $this->server = new \Ratchet\Server\IoServer($this->app, $this->socket, $this->loop);
     }
