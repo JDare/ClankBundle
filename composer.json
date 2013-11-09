@@ -14,7 +14,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.2",
-        "symfony/framework-bundle": ">=2.1,<2.4-dev",
+        "symfony/framework-bundle": "~2.1",
         "cboden/Ratchet": "0.2.*"
     },
     "autoload": {
