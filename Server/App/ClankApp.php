@@ -7,7 +7,7 @@ use Ratchet\Wamp\WampServerInterface;
 
 use JDare\ClankBundle\Server\App\Handler\RPCHandlerInterface;
 use JDare\ClankBundle\Server\App\Handler\TopicHandlerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use JDare\ClankBundle\Event\ClientEvent;
 use JDare\ClankBundle\Event\ClientErrorEvent;
 
@@ -15,7 +15,7 @@ class ClankApp implements WampServerInterface {
 
     protected $topicHandler, $rpcHandler, $eventDispatcher;
 
-    public function __construct(RPCHandlerInterface $rpcHandler, TopicHandlerInterface $topicHandler, EventDispatcher $eventDispatcher)
+    public function __construct(RPCHandlerInterface $rpcHandler, TopicHandlerInterface $topicHandler, EventDispatcherInterface $eventDispatcher)
     {
         $this->rpcHandler = $rpcHandler;
         $this->topicHandler = $topicHandler;
